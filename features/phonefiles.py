@@ -80,8 +80,11 @@ toolkit.register(toolkit.Tool(
     name="send_to_phone",
     description=("Send a file from the PC to the user's phone: take a full `path` returned by "
                  "find_files and it appears in the Files tab of the JARVIS app (and a push "
-                 "says so). Only common document, image, vector and laser/3D file types, "
-                 "under 100 MB, from the folders you search. Use after the user asks you to "
+                 "says so). Works for documents, images (SVG, PNG, JPG and so on), vector and "
+                 "laser project files (SVG, DXF, LightBurn, xTool .xcs), G-code and 3D models "
+                 "(STL, 3MF, STEP), under 100 MB, from the folders you search. Do not refuse "
+                 "a file for its type yourself: call this and it reports if the type is not "
+                 "allowed. Use after the user asks you to "
                  "find and send something, e.g. the SVG for their engraving."),
     schema={"type": "object", "properties": {"path": {"type": "string"}}, "required": ["path"]},
     handler=send_handler, acting=True, exempt="it sends one file the user chose, only to their paired phone"))

@@ -53,7 +53,7 @@ MAX_BYTES = 100 * 1024 * 1024
 MAX_MESSAGES = 100
 SEND_EXTS = {".svg", ".png", ".jpg", ".jpeg", ".gif", ".bmp", ".webp", ".pdf", ".dxf", ".dwg", ".ai",
              ".eps", ".lbrn", ".lbrn2", ".gcode", ".nc", ".txt", ".csv", ".md", ".doc", ".docx",
-             ".xls", ".xlsx", ".ppt", ".pptx", ".zip", ".3mf", ".stl", ".step", ".stp"}
+             ".xls", ".xlsx", ".ppt", ".pptx", ".zip", ".3mf", ".stl", ".step", ".stp", ".xcs"}
 
 # Tools a request from the phone may not use, whatever the brain decides.
 REMOTE_BLOCKED = {"run_command", "spawn_run", "start_build", "steer_session", "answer_dialog",

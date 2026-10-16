@@ -156,6 +156,25 @@ def test_send_to_phone_queues_it_for_the_outbox(client, home, monkeypatch):
     assert "can't find" in run(phonefiles.send_handler({"path": str(home / "missing.svg")}))
 
 
+def test_png_3mf_and_xcs_can_be_sent(client, home, monkeypatch):
+    h = pair(client)
+    for name in ("badge.xcs", "bracket.3mf", "photo.png"):
+        if not (home / name).exists():
+            (home / name).write_bytes(b"data")
+    from features import phone
+
+    async def push(text, title="JARVIS"):
+        return True
+
+    monkeypatch.setattr(phone, "push", push)
+    for name in ("badge.xcs", "bracket.3mf", "photo.png"):
+        assert "waiting in the Files tab" in run(phonefiles.send_handler({"path": str(home / name)}))
+    box = {f["name"] for f in client.get("/files/outbox", headers=h).json()["files"]}
+    assert box == {"badge.xcs", "bracket.3mf", "photo.png"}
+    found = client.get("/files/search", params={"q": "badge"}, headers=h).json()["files"]
+    assert [f["name"] for f in found] == ["badge.xcs"]
+
+
 # ── relay ──────────────────────────────────────────────────────────────────
 
 class Room:

@@ -13,8 +13,8 @@ KINDS = {"pdf": {".pdf"}, "doc": {".doc", ".docx", ".odt", ".txt", ".md", ".rtf"
          "slides": {".ppt", ".pptx", ".key"}, "zip": {".zip", ".7z", ".rar"},
          "svg": {".svg"}, "png": {".png"}, "vector": {".svg", ".dxf", ".ai", ".eps", ".dwg"},
          "laser": {".svg", ".dxf", ".lbrn", ".lbrn2", ".ai", ".eps", ".png", ".jpg", ".jpeg",
-                   ".bmp", ".gcode", ".nc"},
-         "3d": {".stl", ".3mf", ".step", ".stp"}}
+                   ".bmp", ".gcode", ".nc", ".xcs"},
+         "3d": {".stl", ".3mf", ".step", ".stp"}, "xcs": {".xcs"}}
 # Never opened by voice: anything that runs or installs.
 OPEN_BLOCKED = {".exe", ".bat", ".cmd", ".ps1", ".msi", ".vbs", ".js", ".jse", ".wsf", ".lnk",
                 ".scr", ".com", ".reg", ".hta", ".jar", ".py", ".sh"}
@@ -149,7 +149,7 @@ toolkit.register(toolkit.Tool(
     description=("Search the user's Documents, Downloads and Desktop by file name "
                  "(never contents), newest first: `find` with `query` words, "
                  "optional `kind` (pdf, doc, sheet, image, video, audio, slides, "
-                 "zip) and `days` (modified within). `open` takes a full path "
+                 "zip, svg, png, vector, laser, 3d, xcs) and `days` (modified within). `open` takes a full path "
                  "returned by a find, and opens it with its normal app; it will "
                  "not launch programs or scripts."),
     schema={"type": "object", "properties": {
